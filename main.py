@@ -5,6 +5,8 @@ import pandas as pd
 import streamlit as st
 import functions
 
+st.markdown("# Main project page️")
+
 df = pd.read_csv('Maths.csv')
 
 print('We need only "famsize", "Pstatus", "guardian", "romantic", "goout", "Dalc" and "Walc" columns.')
@@ -27,12 +29,6 @@ print(df)
 
 df2 = df[["famsize", "Pstatus", "guardian", "romantic", "goout", "Dalc", "Walc"]].copy()
 list_of_columns = ["famsize", "Pstatus", "guardian", "romantic", "goout", "Dalc", "Walc"]
-print('Lets check columns on NaN elements:')
-for i in range(len(list_of_columns)):
-    print('column ', list_of_columns[i], '-', df2[list_of_columns[i]].isnull().values.any())
-print('It can be clearly seen that there are no such columns with NaN elements, so there are nothing to remove.')
-print()
-print('The DataFrame object after deliting unnecessary columns and checking rows on NaN.')
 print(df2)
 print()
 print('Lets find descriptive statistics')
@@ -43,35 +39,52 @@ print('Walc median -', df2['Walc'].median())
 
 plt.style.use('_mpl-gallery')
 df2.sort_values(by=['goout', 'Dalc'])
+print('lets add a new column that will show alcohol consumption per week ')
+
+df_new = df2.assign(alcoeveryday=lambda x: (x.Dalc + x.Walc) / 2)
+print(df_new)
 
 if st.sidebar.checkbox("Поддержать разработчика"):
     st.sidebar.write('https://www.tinkoff.ru/cf/1bssNH3paO6')
+
 print('Lets look at the statistics of children living in single-parent and two-parent families.')
-df3 = df2[df2['Pstatus'] == 'A'].copy()
-df4 = df2[df2['Pstatus'] == 'T'].copy()
+
+df3 = df_new[df_new['Pstatus'] == 'A'].copy()
+df4 = df_new[df_new['Pstatus'] == 'T'].copy()
 print('As a reminder, all the explanations of all the symbols that appear in the table can be found above.')
+
 print('How many kids living in A families have problems with socialization')
+print('How many kids living in T families have problems with socialization')
 levels_sat = sorted(list(df["romantic"].unique()))
 mass = []
 mass2 = []
-option = st.selectbox("Issues", (['socialization', 'alcochol']))
-if option == 'socialization':
-    for el in levels_sat:
-        mass.append((df3[df3["romantic"] == el])["goout"].mean())
-    functions.drawbar(levels_sat, mass, "romantic", "goout")
-    for el in levels_sat:
-        mass2.append((df4[df4["romantic"] == el])["goout"].mean())
-    functions.drawbar(levels_sat, mass2, "romantic", "goout")
-if option == 'alcochol':
-    levels_sat = ['Dalc', 'Walc']
-    for el in levels_sat:
-        mass.append(df3[el].mean())
-    functions.drawline(levels_sat, mass, "day", "alc ")
-    for el in levels_sat:
-        mass2.append(df4[el].mean())
-    functions.drawline(levels_sat, mass2, "day", "alc")
 
-print('How many kids living in T families have problems with socialization')
+tab1, tab2, tab3 = st.tabs(["Issues", "Daily consumption of alcohol", "Conclusion"])
+with tab1:
+    st.header("Issues")
+    st.write('I assume that children living in single-parent families in Portugal who have problems with socialization are prone to alcohol addiction. In order to test this hypothesis,'
+             ' I constructed various graphs and analyzed the available information.'
+             ' You will find the graphs in the tabs below, and my conclusion will be in a separate tab "Conclusion". ')
+    option = st.selectbox("", (['socialization', 'alcochol']))
+
+    if option == 'socialization':
+        for el in levels_sat:
+            mass.append((df3[df3["romantic"] == el])["goout"].mean())
+        functions.drawbar(levels_sat, mass, "romantic", "goout")
+        for el in levels_sat:
+            mass2.append((df4[df4["romantic"] == el])["goout"].mean())
+        functions.drawbar(levels_sat, mass2, "romantic", "goout")
+    if option == 'alcochol':
+        levels_sat = ['Dalc', 'Walc']
+        for el in levels_sat:
+            mass.append(df3[el].mean())
+        functions.drawline(levels_sat, mass, "day", "alc ")
+        for el in levels_sat:
+            mass2.append(df4[el].mean())
+        functions.drawline(levels_sat, mass2, "day", "alc")
+with tab2:
+    st.header("Daily consumption of alcohol")
 
 
-print(df4.info())
+with tab3:
+    st.header("Conclusion")
