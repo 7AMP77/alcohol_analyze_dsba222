@@ -20,7 +20,7 @@ st.download_button(
     file_name='Maths.csv',
     mime='text/csv',
 )
-if st.sidebar.checkbox("Поддержать разработчика"):
+if st.sidebar.checkbox("Support developer"):
     st.sidebar.write('https://www.tinkoff.ru/cf/1bssNH3paO6')
 
 st.write("[Jupyter notebook](https://www.youtube.com/watch?v=dQw4w9WgXcQ)")

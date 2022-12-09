@@ -24,5 +24,5 @@ for i in ["goout", "Dalc", "Walc"]:
 if fl:
     st.write("all data types are correct")
 st.write("cleanup complete")
-if st.sidebar.checkbox("Поддержать разработчика"):
+if st.sidebar.checkbox("Support developer "):
     st.sidebar.write('https://www.tinkoff.ru/cf/1bssNH3paO6')
