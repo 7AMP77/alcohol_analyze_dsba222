@@ -3,10 +3,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
 import plotly.express as px
+import plotly.graph_objects as go
 
 
 def drawpie(df, values):
-    fig = px.pie(df, values=values)
+    fig = px.pie(df, values=values, names=values)
     st.plotly_chart(fig)
 
 
@@ -35,4 +36,9 @@ def drawline(df, x, y):
 
 def drawscatter(df, x, y):
     fig = px.scatter(df, x=x, y=y)
+    st.plotly_chart(fig)
+
+
+def basictable(df, cells):
+    fig = go.Figure(df, cells=cells)
     st.plotly_chart(fig)

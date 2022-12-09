@@ -2,7 +2,8 @@ import streamlit as st
 import pandas as pd
 
 st.markdown("# Cleanup logs️")
-
+st.write('I checked the tabular values for defects and each line for consistency with its class. The result can be seen below.')
+st.write(':sunglasses:')
 df2 = pd.read_csv("Maths.csv")
 df2 = df2[["famsize", "Pstatus", "guardian", "romantic", "goout", "Dalc", "Walc"]].copy()
 tmp = len(df2)
