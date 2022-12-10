@@ -11,6 +11,7 @@ st.markdown("# Main project page️")
 df = pd.read_csv('Maths.csv')
 
 df2 = df[["famsize", "Pstatus", "guardian", "romantic", "goout", "Dalc", "Walc"]].copy()
+df2 = df2[df2.guardian != 'other']
 df_new = df2.assign(alcoeveryday=lambda x: (x.Dalc + x.Walc) / 2)
 df3 = df_new[df_new['Pstatus'] == 'A'].copy()
 df4 = df_new[df_new['Pstatus'] == 'T'].copy()
@@ -49,22 +50,25 @@ with tab1:
         'I assume that children living in single-parent families in Portugal who have problems with socialization are as prone to alcohol addiction as children living in two-parent families. In order to test this hypothesis,'
         ' I constructed various graphs and analyzed the available information.'
         ' You will find the graphs in the tabs below, and my conclusion will be in a separate tab "Conclusion". ')
-    st.write('First graph - parents living apart')
-    st.write('Second graph - parents living together')
+
     option = st.selectbox("click to select", (['socialization', 'alcohol']))
 
     if option == 'socialization':
+        st.write('First graph - parents living apart')
         functions.drawbar(df3, 'romantic', 'goout')
+        st.write('Second graph - parents living together')
         functions.drawbar(df4, 'romantic', 'goout')
 
     if option == 'alcohol':
+        st.write('First graph - parents living apart')
         functions.drawscatter(df3, 'Dalc', 'Walc')
+        st.write('Second graph - parents living together')
         functions.drawscatter(df4, 'Dalc', 'Walc')
 
 with tab2:
     st.header("Daily consumption of alcohol")
     st.write('The chart below will provide information about'
-             ' children from A and T families and how often they use alcohol.')
+             ' children from A and T families and how often they drink alcohol.')
     st.write('P.S. A - parents living apart, T - parents living together')
     functions.drawbox(df_new, 'Pstatus', 'alcoeveryday')
 with tab3:
@@ -102,9 +106,9 @@ with tab4:
     st.write(
         'Having done all the work, I can confirm my hypothesis that the type of family does not affect the problems of children in Portugal. I have analyzed all the information, analyzed the values obtained and noticed that the difference in the graphs is present in a very small ratio, which can be equated to zero and precisely based on this I can safely say that my hypothesis is true.')
     st.write('All graphs can be found in the tabs to the right.')
-    clicked = st.button("BALOONS")
+    clicked = st.button("SNOW")
     if clicked:
-        st.balloons()
+        st.snow()
 print(df_new)
 print(df['romantic'].value_counts())
 df_check = pd.DataFrame({'P'})
