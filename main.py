@@ -1,5 +1,4 @@
 'Hypothesis - Children living in full families in Portugal and in single-parent families have the same problems with socialization and tendency to alcohol dependence.'
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -11,25 +10,12 @@ st.markdown("# Main project page️")
 
 df = pd.read_csv('Maths.csv')
 
-print('We need only "famsize", "Pstatus", "guardian", "romantic", "goout", "Dalc" and "Walc" columns.')
-print()
-print('Columns meanings are:'
-      ' famize - family size, LE3 - less or equal to 3 or GT3 - greater than 3;', '\n'
-                                                                                  'Pstatus - parents cohabitation status, T - living together or A - apart;',
-      '\n'
-      'guardian - students guardian ,nominal: mother, father or other;', '\n'
-                                                                         'romantic - with a romantic relationship, binary: yes or no;',
-      '\n'
-      'goout - going out with friends, numeric: from 1 - very low to 5 - very high;', '\n'
-                                                                                      'Dalc - workday alcohol consumption,numeric: from 1 - very low to 5 - very high;',
-      '\n'
-      'Walc - weekend alcohol consumption, numeric: from 1 - very low to 5 - very high;')
-print()
-print('The DataFrame object before deliting unnecessary columns and checking rows on NaN.')
-
-print(df)
-
 df2 = df[["famsize", "Pstatus", "guardian", "romantic", "goout", "Dalc", "Walc"]].copy()
+df_new = df2.assign(alcoeveryday=lambda x: (x.Dalc + x.Walc) / 2)
+df3 = df_new[df_new['Pstatus'] == 'A'].copy()
+df4 = df_new[df_new['Pstatus'] == 'T'].copy()
+df5 = df_new[df_new['guardian'] == 'mother']
+df6 = df_new[df_new['guardian'] == 'father']
 list_of_columns = ["famsize", "Pstatus", "guardian", "romantic", "goout", "Dalc", "Walc"]
 print(df2)
 print()
@@ -42,7 +28,7 @@ print('Walc median -', df2['Walc'].median())
 df2.sort_values(by=['goout', 'Dalc'])
 print('lets add a new column that will show alcohol consumption per week ')
 
-df_new = df2.assign(alcoeveryday=lambda x: (x.Dalc + x.Walc) / 2)
+
 print(df_new)
 
 if st.sidebar.checkbox("Support developer"):
@@ -50,17 +36,11 @@ if st.sidebar.checkbox("Support developer"):
 
 print('Lets look at the statistics of children living in single-parent and two-parent families.')
 
-df3 = df_new[df_new['Pstatus'] == 'A'].copy()
-df4 = df_new[df_new['Pstatus'] == 'T'].copy()
-df5 = df_new[df_new['guardian'] == 'mother']
-df6 = df_new[df_new['guardian'] == 'father']
-print('As a reminder, all the explanations of all the symbols that appear in the table can be found above.')
+
 
 levels_sat = sorted(list(df["romantic"].unique()))
 mass = []
 mass2 = []
-tmp3 = df3
-tmp4 = df4
 
 tab1, tab2, tab3, tab4 = st.tabs(["Issues", "Daily consumption of alcohol", "The influence of a parent", "Conclusion"])
 with tab1:
@@ -74,12 +54,12 @@ with tab1:
     option = st.selectbox("click to select", (['socialization', 'alcohol']))
 
     if option == 'socialization':
-        functions.drawbar(tmp3, 'romantic', 'goout')
-        functions.drawbar(tmp4, 'romantic', 'goout')
+        functions.drawbar(df3, 'romantic', 'goout')
+        functions.drawbar(df4, 'romantic', 'goout')
 
     if option == 'alcohol':
-        functions.drawscatter(tmp3, 'Dalc', 'Walc')
-        functions.drawscatter(tmp4, 'Dalc', 'Walc')
+        functions.drawscatter(df3, 'Dalc', 'Walc')
+        functions.drawscatter(df4, 'Dalc', 'Walc')
 
 with tab2:
     st.header("Daily consumption of alcohol")
