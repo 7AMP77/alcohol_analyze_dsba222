@@ -39,6 +39,4 @@ def drawscatter(df, x, y):
     st.plotly_chart(fig)
 
 
-def basictable(df, cells):
-    fig = go.Figure(df, cells=cells)
-    st.plotly_chart(fig)
+

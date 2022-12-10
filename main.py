@@ -4,7 +4,8 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import functions
-import plotly.express as px
+import plotly.graph_objects as go
+import plotly.figure_factory as ff
 
 st.markdown("# Main project page️")
 
@@ -94,15 +95,21 @@ with tab3:
     if option == 'alcohol':
         st.write(
             'In the table below you can see the average daily alcohol consumption depending on who the child lives with.')
-        import plotly.graph_objects as go
 
-        fig = go.Figure(data=[go.Table(header=dict(values=['Mother', 'Father', 'Mother and Father']),
+        fig = go.Figure(data=[go.Table(header=dict(values=['Mother', 'Father']),
                                        cells=dict(values=[[df5.alcoeveryday.mean()], [df6.alcoeveryday.mean()],
-                                                          [df_new.alcoeveryday.mean()]]))])
+                                                          ]))])
+        import plotly.figure_factory as ff
+
+        data_matrix = [['Mother', 'Father', 'Mother and Father'],
+                       [df5.alcoeveryday.mean(), df6.alcoeveryday.mean(), df_new.alcoeveryday.mean()]]
+
+        fig = ff.create_table(data_matrix)
         st.write(fig)
+
     if option == 'socialization':
         st.write('In the table below you can see the average childs walks depending on who he lives with.')
-        import plotly.figure_factory as ff
+
 
         data_matrix = [['Mother', 'Father', 'Mother and Father'],
                        [df5.goout.mean(), df6.goout.mean(), df_new.goout.mean()]]
