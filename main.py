@@ -29,15 +29,12 @@ print('Walc median -', df2['Walc'].median())
 df2.sort_values(by=['goout', 'Dalc'])
 print('lets add a new column that will show alcohol consumption per week ')
 
-
 print(df_new)
 
 if st.sidebar.checkbox("Support developer"):
     st.sidebar.write('https://www.tinkoff.ru/cf/1bssNH3paO6')
 
 print('Lets look at the statistics of children living in single-parent and two-parent families.')
-
-
 
 levels_sat = sorted(list(df["romantic"].unique()))
 mass = []
@@ -62,8 +59,8 @@ with tab1:
         st.write('romantic - kid with a romantic relationship (binary: yes or no)')
         st.write('goout - kids going out with friends (numeric: from 1 - very low to 5 - very high)')
         functions.drawbar(df4, 'romantic', 'goout')
-        st.write('Based on the graphs above, we can conclude that there is no difference in the socialization of children living in single-parent and two-parent families.')
-
+        st.write(
+            'Based on the graphs above, we can conclude that there is no difference in the socialization of children living in single-parent and two-parent families.')
 
     if option == 'alcohol':
         st.write('First graph - parents living apart')
@@ -74,7 +71,8 @@ with tab1:
         st.write('Dalc - kids workday alcohol consumption (numeric: from 1 - very low to 5 - very high)')
         st.write('Walc - kids weekend alcohol consumption (numeric: from 1 - very low to 5 - very high)')
         functions.drawscatter(df4, 'Dalc', 'Walc')
-        st.write('Based on the graphs above, we can conclude that children from single-parent families drink less than children from full families.')
+        st.write(
+            'Based on the graphs above, we can conclude that children from single-parent families drink less than children from full families.')
 
 with tab2:
     st.header("Daily consumption of alcohol")
@@ -83,7 +81,8 @@ with tab2:
     st.write('Pstatus - parents cohabitation status (binary: T - living together or A - apart')
     st.write('alcoeveryday - the arithmetic mean of each childs daily alcohol consumption.')
     functions.drawbox(df_new, 'Pstatus', 'alcoeveryday')
-    st.write('Based on the graph above, we can conclude that the average daily alcohol consumption of children from full families is slightly higher than that of children from one-parent families.')
+    st.write(
+        'Based on the graph above, we can conclude that the average daily alcohol consumption of children from full families is slightly higher than that of children from one-parent families.')
 with tab3:
     st.header("The influence of a parent")
     st.write(
@@ -96,7 +95,6 @@ with tab3:
         fig = go.Figure(data=[go.Table(header=dict(values=['Mother', 'Father']),
                                        cells=dict(values=[[df5.alcoeveryday.mean()], [df6.alcoeveryday.mean()],
                                                           ]))])
-        import plotly.figure_factory as ff
 
         data_matrix = [['Mother', 'Father', 'Mother and Father'],
                        [df5.alcoeveryday.mean(), df6.alcoeveryday.mean(), df_new.alcoeveryday.mean()]]
@@ -107,13 +105,13 @@ with tab3:
     if option == 'socialization':
         st.write('In the table below you can see the average childs walks depending on who he lives with.')
 
-
         data_matrix = [['Mother', 'Father', 'Mother and Father'],
                        [df5.goout.mean(), df6.goout.mean(), df_new.goout.mean()]]
 
         fig = ff.create_table(data_matrix)
         st.write(fig)
-        st.write('Based on the table above, you can see that there is also a slight difference between the values, but it is more noticeable than in alcohol.')
+        st.write(
+            'Based on the table above, you can see that there is also a slight difference between the values, but it is more noticeable than in alcohol.')
 with tab4:
     st.header("Conclusion")
     st.write(
@@ -122,7 +120,4 @@ with tab4:
     clicked = st.button("SNOW")
     if clicked:
         st.snow()
-print(df_new)
-print(df['romantic'].value_counts())
-df_check = pd.DataFrame({'P'})
-print(df5)
+
