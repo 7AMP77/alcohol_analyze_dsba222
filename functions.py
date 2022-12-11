@@ -1,7 +1,5 @@
-import matplotlib.pyplot as plt
 import streamlit as st
 import plotly.express as px
-
 
 
 def drawpie(df, values):
@@ -35,6 +33,3 @@ def drawline(df, x, y):
 def drawscatter(df, x, y):
     fig = px.scatter(df, x=x, y=y)
     st.plotly_chart(fig)
-
-
-
