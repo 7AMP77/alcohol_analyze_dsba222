@@ -17,14 +17,6 @@ def drawbar(df, x, y):
     st.plotly_chart(fig)
 
 
-def drawstak(x, y, xt, yt):
-    fig, ax = plt.subplots()
-    plt.stackplot(x, y)
-    ax.set_ylabel(yt)
-    ax.set_xlabel(xt)
-    st.pyplot(fig)
-
-
 def drawline(df, x, y):
     fig = px.line(df, x=x, y=y)
     st.plotly_chart(fig)
