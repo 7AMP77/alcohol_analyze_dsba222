@@ -55,22 +55,35 @@ with tab1:
 
     if option == 'socialization':
         st.write('First graph - parents living apart')
+        st.write('romantic - kid with a romantic relationship (binary: yes or no)')
+        st.write('goout - going out with friends (numeric: from 1 - very low to 5 - very high)')
         functions.drawbar(df3, 'romantic', 'goout')
         st.write('Second graph - parents living together')
+        st.write('romantic - kid with a romantic relationship (binary: yes or no)')
+        st.write('goout - kids going out with friends (numeric: from 1 - very low to 5 - very high)')
         functions.drawbar(df4, 'romantic', 'goout')
+        st.write('Based on the graphs above, we can conclude that there is no difference in the socialization of children living in single-parent and two-parent families.')
+
 
     if option == 'alcohol':
         st.write('First graph - parents living apart')
+        st.write('Dalc - kids workday alcohol consumption (numeric: from 1 - very low to 5 - very high)')
+        st.write('Walc - kids weekend alcohol consumption (numeric: from 1 - very low to 5 - very high)')
         functions.drawscatter(df3, 'Dalc', 'Walc')
         st.write('Second graph - parents living together')
+        st.write('Dalc - kids workday alcohol consumption (numeric: from 1 - very low to 5 - very high)')
+        st.write('Walc - kids weekend alcohol consumption (numeric: from 1 - very low to 5 - very high)')
         functions.drawscatter(df4, 'Dalc', 'Walc')
+        st.write('Based on the graphs above, we can conclude that children from single-parent families drink less than children from full families.')
 
 with tab2:
     st.header("Daily consumption of alcohol")
     st.write('The chart below will provide information about'
              ' children from A and T families and how often they drink alcohol.')
-    st.write('P.S. A - parents living apart, T - parents living together')
+    st.write('Pstatus - parents cohabitation status (binary: T - living together or A - apart')
+    st.write('alcoeveryday - the arithmetic mean of each childs daily alcohol consumption.')
     functions.drawbox(df_new, 'Pstatus', 'alcoeveryday')
+    st.write('Based on the graph above, we can conclude that the average daily alcohol consumption of children from full families is slightly higher than that of children from one-parent families.')
 with tab3:
     st.header("The influence of a parent")
     st.write(
@@ -90,7 +103,7 @@ with tab3:
 
         fig = ff.create_table(data_matrix)
         st.write(fig)
-
+        st.write('Based on the table above, you can see that there is a slight difference between the values.  ')
     if option == 'socialization':
         st.write('In the table below you can see the average childs walks depending on who he lives with.')
 
@@ -100,7 +113,7 @@ with tab3:
 
         fig = ff.create_table(data_matrix)
         st.write(fig)
-
+        st.write('Based on the table above, you can see that there is also a slight difference between the values, but it is more noticeable than in alcohol.')
 with tab4:
     st.header("Conclusion")
     st.write(
