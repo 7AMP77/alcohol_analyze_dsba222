@@ -120,4 +120,3 @@ with tab4:
     clicked = st.button("SNOW")
     if clicked:
         st.snow()
-
