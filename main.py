@@ -59,7 +59,7 @@ def display_issues_tab(tab, df):
             functions.drawbar(df, 'romantic', 'goout')
             st.write(
                 'Based on the graphs above, we can conclude that there is no difference in the socialization of children living in single-parent and two-parent families.')
-        if option == 'alcohol':
+        elif option == 'alcohol':
             st.write('First graph - parents living apart')
             st.write('Dalc - kids workday alcohol consumption (numeric: from 1 - very low to 5 - very high)')
             st.write('Walc - kids weekend alcohol consumption (numeric: from 1 - very low to 5 - very high)')
@@ -103,7 +103,7 @@ def display_parent_influence_tab(tab, df):
             fig = ff.create_table(data_matrix)
             st.write(fig)
             st.write('Based on the table above, you can see that there is a slight difference between the values.  ')
-        if option == 'socialization':
+        elif option == 'socialization':
             st.write('In the table below you can see the average childs walks depending on who he lives with.')
 
             data_matrix = [['Mother', 'Father', 'Mother and Father'],
