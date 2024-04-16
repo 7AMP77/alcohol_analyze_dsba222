@@ -41,8 +41,6 @@ def setup_streamlit_interface(df):
 
 
 def display_issues_tab(tab, df):
-    if st.sidebar.checkbox("Support developer", key='issues_tab_support'):
-        st.sidebar.write('https://www.tinkoff.ru/cf/gRW0sECqnu')
     with tab:
         st.header("Issues")
         st.write(
@@ -74,8 +72,6 @@ def display_issues_tab(tab, df):
                 'Based on the graphs above, we can conclude that children from single-parent families drink less than children from full families.')
 
 def display_alcohol_consumption_tab(tab, df):
-    if st.sidebar.checkbox("Support developer", key='alcohol_tab_support'):
-        st.sidebar.write('https://www.tinkoff.ru/cf/gRW0sECqnu')
     with tab:
         st.header("Daily consumption of alcohol")
         st.write('The chart below will provide information about'
@@ -88,8 +84,6 @@ def display_alcohol_consumption_tab(tab, df):
 
 
 def display_parent_influence_tab(tab, df):
-    if st.sidebar.checkbox("Support developer", key='parent_tab_support'):
-        st.sidebar.write('https://www.tinkoff.ru/cf/gRW0sECqnu')
     with tab:
         st.header("The influence of a parent")
         st.write(
@@ -120,8 +114,6 @@ def display_parent_influence_tab(tab, df):
             st.write(
                 'Based on the table above, you can see that there is also a slight difference between the values, but it is more noticeable than in alcohol.')
 def display_conclusion_tab(tab):
-    if st.sidebar.checkbox("Support developer", key='conclusion_tab_support'):
-        st.sidebar.write('https://www.tinkoff.ru/cf/gRW0sECqnu')
     with tab:
         st.header("Conclusion")
         st.write(
