@@ -28,10 +28,13 @@ def calculate_descriptive_stats(df):
     print('Walc median -', df['Walc'].median())
 
 
+def side_bar():
+    st.sidebar.write('https://www.tinkoff.ru/cf/gRW0sECqnu')
+
 def setup_streamlit_interface(df):
     st.markdown("# Main project page️")
     if st.sidebar.checkbox("Support developer"):
-        st.sidebar.write('https://www.tinkoff.ru/cf/gRW0sECqnu')
+        side_bar()
 
     tabs = st.tabs(["Issues", "Daily consumption of alcohol", "The influence of a parent", "Conclusion"])
     display_issues_tab(tabs[0], df)
@@ -41,6 +44,8 @@ def setup_streamlit_interface(df):
 
 
 def display_issues_tab(tab, df):
+    if st.sidebar.checkbox("Support developer"):
+        side_bar()
     with tab:
         st.header("Issues")
         st.write(
@@ -72,6 +77,8 @@ def display_issues_tab(tab, df):
                 'Based on the graphs above, we can conclude that children from single-parent families drink less than children from full families.')
 
 def display_alcohol_consumption_tab(tab, df):
+    if st.sidebar.checkbox("Support developer"):
+        side_bar()
     with tab:
         st.header("Daily consumption of alcohol")
         st.write('The chart below will provide information about'
@@ -84,6 +91,8 @@ def display_alcohol_consumption_tab(tab, df):
 
 
 def display_parent_influence_tab(tab, df):
+    if st.sidebar.checkbox("Support developer"):
+        side_bar()
     with tab:
         st.header("The influence of a parent")
         st.write(
@@ -114,6 +123,8 @@ def display_parent_influence_tab(tab, df):
             st.write(
                 'Based on the table above, you can see that there is also a slight difference between the values, but it is more noticeable than in alcohol.')
 def display_conclusion_tab(tab):
+    if st.sidebar.checkbox("Support developer"):
+        side_bar()
     with tab:
         st.header("Conclusion")
         st.write(
