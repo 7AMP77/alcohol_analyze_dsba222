@@ -127,3 +127,6 @@ def main():
     df = load_data()
     calculate_descriptive_stats(df)
     setup_streamlit_interface(df)
+
+if __name__ == '__main__':
+    main()
