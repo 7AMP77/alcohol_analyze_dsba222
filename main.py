@@ -30,9 +30,6 @@ def calculate_descriptive_stats(df):
 
 def setup_streamlit_interface(df):
     st.markdown("# Main project page️")
-    if st.sidebar.checkbox("Support developer", key='main_page_support'):
-        st.sidebar.write('https://www.tinkoff.ru/cf/gRW0sECqnu')
-
     tabs = st.tabs(["Issues", "Daily consumption of alcohol", "The influence of a parent", "Conclusion"])
     display_issues_tab(tabs[0], df)
     display_alcohol_consumption_tab(tabs[1], df)
