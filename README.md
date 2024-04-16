@@ -1,4 +1,4 @@
-# The Impact of Families on Alcohol Problems and Socialization of Children in Portugal.
+# The impact of alcohol in families on children's problems and socialization in Portugal.
 
 ## Overview
 First year uni project related to find out the impact of aclochol problems on families using statistics methods in python.
