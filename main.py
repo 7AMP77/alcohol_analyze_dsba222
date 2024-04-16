@@ -47,7 +47,7 @@ def display_issues_tab(tab, df):
             'I assume that children living in single-parent families in Portugal who have problems with socialization are as prone to alcohol addiction as children living in two-parent families. In order to test this hypothesis,'
             ' I constructed various graphs and analyzed the available information.'
             ' You will find the graphs in the tabs below, and my conclusion will be in a separate tab "Conclusion". ')
-        option = st.selectbox("click to select ", ['alcohol', 'socialization'])
+        option = st.selectbox("Click to select:", ['alcohol', 'socialization'], key='option_issues_tab')
         if option == 'socialization':
             st.write('First graph - parents living apart')
             st.write('romantic - kid with a romantic relationship (binary: yes or no)')
@@ -88,7 +88,7 @@ def display_parent_influence_tab(tab, df):
         st.header("The influence of a parent")
         st.write(
             'In the tabels below I have analyzed the effect of which parent a child lives with on their drinking and socialization problems.')
-        option = st.selectbox("click to select ", (['alcohol', 'socialization']))
+        option = st.selectbox("Click to select:", ['alcohol', 'socialization'], key='option_parent_influence_tab')
         if option == 'alcohol':
             st.write(
                 'In the table below you can see the average daily alcohol consumption depending on who the child lives with.')
